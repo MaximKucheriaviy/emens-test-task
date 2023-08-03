@@ -2,13 +2,17 @@ import { StyledForm } from "./CreateEventFormStyled";
 import { FormInput } from "../FormInput/FromInput";
 import { useState } from "react";
 import { validate } from "../../../service/validation";
-import { DataPiker } from "../../datepiker/DataPiker";
+import { DataPiker } from "../datepiker/DataPiker";
+import { TimePicker } from "../timePicker/timePicker";
 
 export const CreateEventForm = () => {
   const titleState = useState("");
   const descriptionState = useState("");
+  const locationState = useState("");
+  const [eventDate, setEventDate] = useState(null);
   const [titleValid, setTitleValid] = useState(true);
   const [desctiptionValid, setDesctiptionValid] = useState(true);
+  const [locationValid, setLocationValid] = useState(true);
   const titleValidator = (line) => {
     setTitleValid(
       validate(line, {
@@ -25,6 +29,12 @@ export const CreateEventForm = () => {
       })
     );
   };
+  const locationValidator = (line) => {
+    setLocationValid(line, {
+      rejectStartSymbols: [" ", ",", ".", "-", "/", "\\", "@"],
+      rejectSymbols: [",", ".", "/", "\\"],
+    });
+  };
   return (
     <StyledForm>
       <FormInput
@@ -35,14 +45,22 @@ export const CreateEventForm = () => {
         validator={titleValidator}
       />
       <FormInput
-        name="title"
+        name="description"
         title="Decription"
         errorMessage={!desctiptionValid}
         valueState={descriptionState}
         validator={desctiptionValidator}
         field={true}
       />
-      <DataPiker />
+      <DataPiker setDateProp={setEventDate} />
+      <TimePicker setDate={setEventDate} />
+      <FormInput
+        name="location"
+        title="Location"
+        errorMessage={!locationValid}
+        valueState={locationState}
+        validator={locationValidator}
+      />
     </StyledForm>
   );
 };

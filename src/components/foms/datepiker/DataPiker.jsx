@@ -1,6 +1,6 @@
 import { DataPikerStyled, DataPikerModal } from "./DataPikerStyled";
 import { useState } from "react";
-import { ReactComponent as Chevron } from "./SWM icons-outline-chevron-down-small.svg";
+import { ReactComponent as Chevron } from "../../../assets/icons/chevron.svg";
 import { Calendar } from "./Calendar";
 
 const monthNames = [
@@ -18,7 +18,7 @@ const monthNames = [
   "December",
 ];
 
-export const DataPiker = () => {
+export const DataPiker = ({ setDateProp }) => {
   const [active, setActive] = useState(false);
   const [date, setDate] = useState(new Date(Date.now()));
   const [currentDate] = useState(new Date(Date.now()));
@@ -38,6 +38,7 @@ export const DataPiker = () => {
       `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
     );
     setActive(false);
+    setDateProp(date);
   };
   const onLeftClick = () => {
     setDate((state) => {

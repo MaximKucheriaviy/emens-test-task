@@ -16,7 +16,7 @@ export const DataPikerStyled = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    ${({ theme }) => theme.fomtCaption};
+    ${({ theme }) => theme.fontCaption}
     line-height: 24px;
     font-size: 16px;
     width: 100%;
@@ -38,6 +38,7 @@ export const DataPikerStyled = styled.div`
 `;
 
 export const DataPikerModal = styled.div`
+  z-index: 1000;
   position: absolute;
   top: calc(100% + 8px);
   left: 0px;

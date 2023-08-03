@@ -4,7 +4,7 @@ import { v4 } from "uuid";
 function daysInMonth(month, year) {
   return new Date(year, month, 0).getDate();
 }
-export const Calendar = ({ date = new Date(), currentDate }) => {
+export const Calendar = ({ date = new Date(), currentDate, setDate }) => {
   const dateCopy = new Date(date);
   const day = dateCopy.getDate();
   dateCopy.setDate(1);
@@ -42,6 +42,13 @@ export const Calendar = ({ date = new Date(), currentDate }) => {
                   ? "current"
                   : ""
               }
+              onClick={() => {
+                setDate((state) => {
+                  const newState = new Date(state);
+                  newState.setDate(Number.parseInt(item));
+                  return newState;
+                });
+              }}
             >
               {item}
             </button>

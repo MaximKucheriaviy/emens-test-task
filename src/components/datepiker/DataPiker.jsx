@@ -22,6 +22,7 @@ export const DataPiker = () => {
   const [active, setActive] = useState(false);
   const [date, setDate] = useState(new Date(Date.now()));
   const [currentDate] = useState(new Date(Date.now()));
+  const [stringDate, setStringDate] = useState("");
   const onMainButtonClick = () => {
     setActive((state) => !state);
   };
@@ -31,6 +32,12 @@ export const DataPiker = () => {
       newState.setMonth(state.getMonth() + 1);
       return newState;
     });
+  };
+  const acceptData = () => {
+    setStringDate(
+      `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
+    );
+    setActive(false);
   };
   const onLeftClick = () => {
     setDate((state) => {
@@ -43,7 +50,7 @@ export const DataPiker = () => {
     <DataPikerStyled>
       <h3 className="title">Select date</h3>
       <button type="button" className="mainButton" onClick={onMainButtonClick}>
-        {active ? "Select Date" : "Data"}
+        {active ? "Select Date" : stringDate || "Input"}
         <Chevron className={!active ? "activeChevron" : "disabledChevron"} />
       </button>
       {active && (
@@ -69,7 +76,21 @@ export const DataPiker = () => {
             <div>Fri</div>
             <div className="red">Sat</div>
           </div>
-          <Calendar date={date} currentDate={currentDate} />
+          <Calendar date={date} currentDate={currentDate} setDate={setDate} />
+          <div className="buttonDiv">
+            <button
+              className="canselButton"
+              onClick={() => {
+                setActive(false);
+              }}
+              type="button"
+            >
+              Cansel
+            </button>
+            <button className="chooseButton" type="button" onClick={acceptData}>
+              Choose date
+            </button>
+          </div>
         </DataPikerModal>
       )}
     </DataPikerStyled>

@@ -87,6 +87,36 @@ export const DataPikerModal = styled.div`
       line-height: 16px; /* 133.333% */
     }
   }
+  & .buttonDiv {
+    display: flex;
+    justify-content: space-between;
+    & button {
+      border-radius: 4px;
+      border: 1px solid ${({ theme }) => theme.primaryColor};
+      padding: 8px 16px;
+    }
+    & .canselButton {
+      background-color: white;
+      text-align: center;
+      font-family: Poppins;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 16px; /* 133.333% */
+      color: ${({ theme }) => theme.primaryColor};
+    }
+    & .chooseButton {
+      margin-left: auto;
+      text-align: center;
+      font-family: Poppins;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 16px; /* 133.333% */
+      background-color: ${({ theme }) => theme.primaryColor};
+      color: white;
+    }
+  }
 `;
 
 export const StyledCalendar = styled.div`
@@ -106,9 +136,10 @@ export const StyledCalendar = styled.div`
     line-height: 16px; /* 133.333% */
     border: none;
     background-color: transparent;
+    color: ${({ theme }) => theme.divider};
   }
   & div {
-    padding: 8px;
+    height: 32px;
   }
 
   & .selected {

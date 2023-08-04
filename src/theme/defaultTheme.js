@@ -31,5 +31,11 @@ export class defaultTheme {
     font-style: normal;
     font-weight: 500;
     line-height: normal;`;
+    this.fontTitle = `color: #000;
+font-family: Poppins;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;`;
   }
 }

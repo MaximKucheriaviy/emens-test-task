@@ -2,6 +2,7 @@ import { styled } from "styled-components";
 export const MainStyled = styled.section`
   padding-top: 40px;
   padding-right: 24px;
+  padding-left: 24px;
   & .buttonsDiv {
     display: flex;
     flex-direction: row-reverse;

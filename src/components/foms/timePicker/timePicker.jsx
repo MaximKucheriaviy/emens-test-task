@@ -1,14 +1,9 @@
 import { useState } from "react";
 import { TimePickerStyled, TymePickerModal } from "./timePickerStyled";
 import { ReactComponent as Chevron } from "../../../assets/icons/chevron.svg";
+import { formatTime } from "../../../service/timeFormater";
 
 export const TimePicker = ({ setDate }) => {
-  const formatTime = (time) => {
-    if (time < 10) {
-      return "0" + time;
-    }
-    return time;
-  };
   const [active, setActive] = useState(false);
   const [hour, setHout] = useState(12);
   const [minute, setMinute] = useState(0);

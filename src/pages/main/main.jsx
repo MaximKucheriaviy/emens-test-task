@@ -3,12 +3,15 @@ import { ReactComponent as Plus } from "../../assets/icons/plus.svg";
 import { ReactComponent as Filter2 } from "../../assets/icons/filters-2.svg";
 import { ReactComponent as Filter3 } from "../../assets/icons/filters-3.svg";
 import { useNavigate } from "react-router-dom";
+import { EventList } from "../../components/eventLinst/EventList";
+import { useAllEvents } from "../../redux/selectors/eventSelector";
 
 export const MainPage = () => {
   const navigate = useNavigate();
   const onAddClick = () => {
     navigate("/createEvent", { state: { from: "/" } });
   };
+  const events = useAllEvents();
   return (
     <MainStyled>
       <div className="buttonsDiv">
@@ -22,6 +25,7 @@ export const MainPage = () => {
           <Filter3 />
         </FileterButton>
       </div>
+      <EventList list={events} />
     </MainStyled>
   );
 };

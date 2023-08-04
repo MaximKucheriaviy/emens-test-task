@@ -7,21 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useEvent } from "../../redux/selectors/eventSelector";
 import { deleteEvent } from "../../redux/slices/eventSlice";
 import { useDispatch } from "react-redux";
-
-const formatTime = (time) => {
-  if (time < 10) {
-    return "0" + time;
-  }
-  return time;
-};
-
-const parseDate = (date = new Date()) => {
-  return `${formatTime(date.getDate())}.${formatTime(
-    date.getMonth() + 1
-  )} at ${formatTime(
-    date.getHours() > 13 ? date.getHours() - 12 : date.getHours() || 12
-  )}:${formatTime(date.getMinutes())} ${date.getHours() > 13 ? "am" : "pm"}`;
-};
+import { parseDate } from "../../service/timeFormater";
 
 export const EventPage = () => {
   const params = useParams();

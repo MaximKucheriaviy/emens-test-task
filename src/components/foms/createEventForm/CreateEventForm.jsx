@@ -6,6 +6,9 @@ import { DataPiker } from "../datepiker/DataPiker";
 import { TimePicker } from "../timePicker/timePicker";
 import { CategoryPicker } from "../categorySelector/categorySelector";
 import { FileInput } from "../fileInput/FileInput";
+import { addEvent } from "../../../redux/slices/eventSlice";
+import { useDispatch } from "react-redux";
+import { v4 } from "uuid";
 
 export const CreateEventForm = () => {
   const titleState = useState("");
@@ -14,10 +17,12 @@ export const CreateEventForm = () => {
   const [eventDate, setEventDate] = useState(null);
   const [category, setCategory] = useState(null);
   const [priority, setPriority] = useState(null);
-
+  const [file, setFile] = useState(null);
   const [titleValid, setTitleValid] = useState(true);
   const [desctiptionValid, setDesctiptionValid] = useState(true);
   const [locationValid, setLocationValid] = useState(true);
+
+  const dispatch = useDispatch();
   const titleValidator = (line) => {
     setTitleValid(
       validate(line, {
@@ -40,8 +45,39 @@ export const CreateEventForm = () => {
       rejectSymbols: [",", ".", "/", "\\"],
     });
   };
+  const checkSubmitEnable = () => {
+    return (
+      titleState[0] &&
+      titleValid &&
+      descriptionState[0] &&
+      desctiptionValid &&
+      locationState[0] &&
+      locationValid &&
+      eventDate &&
+      category &&
+      priority &&
+      file
+    );
+  };
+  const onSubmit = (event) => {
+    event.preventDefault();
+    if (!checkSubmitEnable()) {
+      return;
+    }
+    const data = {
+      id: v4(),
+      title: titleState[0],
+      description: descriptionState[0],
+      location: locationState[0],
+      eventDate: eventDate.getTime(),
+      category,
+      priority,
+      file,
+    };
+    dispatch(addEvent(data));
+  };
   return (
-    <StyledForm>
+    <StyledForm onSubmit={onSubmit}>
       <FormInput
         name="title"
         title="Title"
@@ -79,13 +115,19 @@ export const CreateEventForm = () => {
           "Sport",
         ]}
       />
-      <FileInput title="Foto" />
+      <FileInput title="Foto" setFile={setFile} />
       <CategoryPicker
         title="Priority"
         setCategotyProp={setPriority}
         items={["High", "Medium", "Low"]}
         marginBottom="0px"
       />
+      <button
+        type="submit"
+        className={`${checkSubmitEnable() ? "enable" : "disable"} submitButton`}
+      >
+        Add event
+      </button>
     </StyledForm>
   );
 };

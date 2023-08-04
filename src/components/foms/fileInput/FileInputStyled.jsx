@@ -10,6 +10,7 @@ export const StyledFileInput = styled(StyledInput)`
 
   & .inputDiv {
     ${({ theme }) => theme.fontCaption};
+    overflow: hidden;
     line-height: 24px;
     font-size: 16px;
     width: 100%;

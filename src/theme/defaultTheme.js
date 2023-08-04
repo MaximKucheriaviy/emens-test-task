@@ -4,6 +4,7 @@ export class defaultTheme {
     this.divider = "#ACA7C3";
     this.hardGray = "#3F3F3F";
     this.pink = "#FF2B77";
+    this.hoverColor = "#6243FF";
     this.fontH2 = `color: "#000";
     font-family: "Poppins";
     font-size: 32px;

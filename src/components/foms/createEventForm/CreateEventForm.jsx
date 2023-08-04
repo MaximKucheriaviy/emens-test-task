@@ -5,6 +5,7 @@ import { validate } from "../../../service/validation";
 import { DataPiker } from "../datepiker/DataPiker";
 import { TimePicker } from "../timePicker/timePicker";
 import { CategoryPicker } from "../categorySelector/categorySelector";
+import { FileInput } from "../fileInput/FileInput";
 
 export const CreateEventForm = () => {
   const titleState = useState("");
@@ -78,7 +79,7 @@ export const CreateEventForm = () => {
           "Sport",
         ]}
       />
-
+      <FileInput title="Foto" />
       <CategoryPicker
         title="Priority"
         setCategotyProp={setPriority}

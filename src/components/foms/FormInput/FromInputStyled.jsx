@@ -17,7 +17,7 @@ export const StyledInput = styled.div`
   }
   & input,
   & textarea {
-    ${({ theme }) => theme.fomtCaption};
+    ${({ theme }) => theme.fontCaption};
     line-height: 24px;
     font-size: 16px;
     width: 100%;

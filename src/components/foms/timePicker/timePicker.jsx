@@ -70,7 +70,11 @@ export const TimePicker = ({ setDate }) => {
   return (
     <TimePickerStyled>
       <h3 className="title">Select date</h3>
-      <button type="button" className="mainButton" onClick={onMainButtonClick}>
+      <button
+        type="button"
+        className={`mainButton ${active ? "activeButton" : ""}`}
+        onClick={onMainButtonClick}
+      >
         {active ? "Select Time" : strinTime || "Input"}
         <Chevron className={!active ? "activeChevron" : "disabledChevron"} />
       </button>

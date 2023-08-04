@@ -50,7 +50,11 @@ export const DataPiker = ({ setDateProp }) => {
   return (
     <DataPikerStyled>
       <h3 className="title">Select date</h3>
-      <button type="button" className="mainButton" onClick={onMainButtonClick}>
+      <button
+        type="button"
+        className={`mainButton ${active ? "activeButton" : ""}`}
+        onClick={onMainButtonClick}
+      >
         {active ? "Select Date" : stringDate || "Input"}
         <Chevron className={!active ? "activeChevron" : "disabledChevron"} />
       </button>

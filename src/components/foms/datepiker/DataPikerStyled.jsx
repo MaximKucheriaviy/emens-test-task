@@ -35,6 +35,9 @@ export const DataPikerStyled = styled.div`
       transform: rotateZ(180deg);
     }
   }
+  & .activeButton {
+    color: ${({ theme }) => theme.primaryColor};
+  }
 `;
 
 export const DataPikerModal = styled.div`

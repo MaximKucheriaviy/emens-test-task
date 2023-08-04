@@ -4,12 +4,16 @@ import { useState } from "react";
 import { validate } from "../../../service/validation";
 import { DataPiker } from "../datepiker/DataPiker";
 import { TimePicker } from "../timePicker/timePicker";
+import { CategoryPicker } from "../categorySelector/categorySelector";
 
 export const CreateEventForm = () => {
   const titleState = useState("");
   const descriptionState = useState("");
   const locationState = useState("");
   const [eventDate, setEventDate] = useState(null);
+  const [category, setCategory] = useState(null);
+  const [priority, setPriority] = useState(null);
+
   const [titleValid, setTitleValid] = useState(true);
   const [desctiptionValid, setDesctiptionValid] = useState(true);
   const [locationValid, setLocationValid] = useState(true);
@@ -60,6 +64,26 @@ export const CreateEventForm = () => {
         errorMessage={!locationValid}
         valueState={locationState}
         validator={locationValidator}
+      />
+      <CategoryPicker
+        title="Category"
+        setCategotyProp={setCategory}
+        items={[
+          "Art",
+          "Musick",
+          "Business",
+          "Conference",
+          "Workshop",
+          "Party",
+          "Sport",
+        ]}
+      />
+
+      <CategoryPicker
+        title="Priority"
+        setCategotyProp={setPriority}
+        items={["High", "Medium", "Low"]}
+        marginBottom="0px"
       />
     </StyledForm>
   );

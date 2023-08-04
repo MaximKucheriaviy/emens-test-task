@@ -13,6 +13,7 @@ export const FileInput = ({ name, title, setFile }) => {
     console.log(file);
     setFilePath("File selected");
     const url = URL.createObjectURL(file);
+    console.log(event.target.value);
     setFile(url);
   };
   const reset = (event) => {

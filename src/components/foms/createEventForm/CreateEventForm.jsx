@@ -9,6 +9,8 @@ import { FileInput } from "../fileInput/FileInput";
 import { addEvent } from "../../../redux/slices/eventSlice";
 import { useDispatch } from "react-redux";
 import { v4 } from "uuid";
+import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const CreateEventForm = () => {
   const titleState = useState("");
@@ -22,6 +24,8 @@ export const CreateEventForm = () => {
   const [desctiptionValid, setDesctiptionValid] = useState(true);
   const [locationValid, setLocationValid] = useState(true);
 
+  const location = useLocation();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const titleValidator = (line) => {
     setTitleValid(
@@ -72,9 +76,10 @@ export const CreateEventForm = () => {
       eventDate: eventDate.getTime(),
       category,
       priority,
-      file,
+      file: `./images/${category}.png`,
     };
     dispatch(addEvent(data));
+    navigate(`/${data.id}`, { state: { from: "/createEvent" } });
   };
   return (
     <StyledForm onSubmit={onSubmit}>
@@ -107,7 +112,7 @@ export const CreateEventForm = () => {
         setCategotyProp={setCategory}
         items={[
           "Art",
-          "Musick",
+          "Music",
           "Business",
           "Conference",
           "Workshop",

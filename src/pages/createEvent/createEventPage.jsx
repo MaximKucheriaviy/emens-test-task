@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { StyedCretePage, StyledBackButton } from "./createEventPageStyled";
-import { ReactComponent as ArrowLeft } from "./First page_filter-SWM icons-outline-arrow-left.svg";
+import { ReactComponent as ArrowLeft } from "../../assets/icons/Arrow.svg";
 import { CreateEventForm } from "../../components/foms/createEventForm/CreateEventForm";
 
 export const CreateEventPage = () => {

@@ -22,7 +22,10 @@ export const EventPage = () => {
   };
   return (
     <EventPageStyled>
-      <StyledBackButton to={location.state ? location.state.from : "/"}>
+      <StyledBackButton
+        to={location.state ? location.state.from : "/"}
+        state={{ page: location.state ? location.state.page : 1 }}
+      >
         <ArrowLeft />
         Back
       </StyledBackButton>

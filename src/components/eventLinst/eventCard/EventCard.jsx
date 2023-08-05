@@ -1,7 +1,7 @@
 import { parseDate } from "../../../service/timeFormater";
 import { StyledCard, MoreInfo } from "./EventCardStyled";
 
-export const EventCard = ({ event }) => {
+export const EventCard = ({ event, page }) => {
   const date = new Date(event.eventDate);
   return (
     <StyledCard>
@@ -20,7 +20,7 @@ export const EventCard = ({ event }) => {
         <h3 className="title">{event.title}</h3>
         <p className="description">{event.description}</p>
         <div className="hiddenBlock">
-          <MoreInfo to={`/${event.id}`} state={{ frtom: "/" }}>
+          <MoreInfo to={`/${event.id}`} state={{ from: "/", page }}>
             More info
           </MoreInfo>
         </div>

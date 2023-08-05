@@ -40,7 +40,7 @@ export const MainPage = () => {
   const [filterStatus, setFilterStatus] = useState(null);
 
   const [filter, setFilter] = useState("");
-  const [sort, setSort] = useState("");
+  const [sort, setSort] = useState(sortTypes[4]);
   const keyword = useKeyword();
   const onAddClick = () => {
     navigate("/createEvent", { state: { from: "/" } });

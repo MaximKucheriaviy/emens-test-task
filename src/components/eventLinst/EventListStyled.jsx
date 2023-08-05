@@ -9,5 +9,9 @@ export const StyledList = styled.ul`
   margin-top: 40px;
   @media screen and (min-width: 768px) {
     margin-top: 24px;
+    grid-template-columns: 300px 300px;
+    grid-gap: 24px;
+    width: auto;
+    align-items: center;
   }
 `;

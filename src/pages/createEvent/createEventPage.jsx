@@ -1,13 +1,11 @@
-import { useLocation } from "react-router-dom";
 import { StyedCretePage, StyledBackButton } from "./createEventPageStyled";
 import { ReactComponent as ArrowLeft } from "../../assets/icons/Arrow.svg";
 import { CreateEventForm } from "../../components/forms/createEventForm/CreateEventForm";
 
 export const CreateEventPage = () => {
-  const location = useLocation();
   return (
     <StyedCretePage>
-      <StyledBackButton to={location.state ? location.state.from : "/"}>
+      <StyledBackButton to={"/"}>
         <ArrowLeft />
         Back
       </StyledBackButton>

@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-
 export const eventSlice = createSlice({
   name: "events",
   initialState: {
@@ -7,7 +6,7 @@ export const eventSlice = createSlice({
   },
   reducers: {
     addEvent(state, { payload }) {
-      state.value.push(payload);
+      state.value.unshift(payload);
       saveToStorage(state.value);
     },
     deleteEvent(state, { payload }) {

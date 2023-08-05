@@ -10,10 +10,8 @@ export const FileInput = ({ name, title, setFile }) => {
 
   const onChage = (event) => {
     const file = event.target.files[0];
-    console.log(file);
     setFilePath("File selected");
     const url = URL.createObjectURL(file);
-    console.log(event.target.value);
     setFile(url);
   };
   const reset = (event) => {

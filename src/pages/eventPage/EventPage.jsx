@@ -8,6 +8,7 @@ import { useEvent } from "../../redux/selectors/eventSelector";
 import { deleteEvent } from "../../redux/slices/eventSlice";
 import { useDispatch } from "react-redux";
 import { parseDate } from "../../service/timeFormater";
+import { useEffect } from "react";
 
 export const EventPage = () => {
   const params = useParams();
@@ -20,6 +21,10 @@ export const EventPage = () => {
     dispatch(deleteEvent(event.id));
     navigate("/");
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <EventPageStyled>
       <StyledBackButton

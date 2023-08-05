@@ -63,7 +63,9 @@ export const MainPage = () => {
     }
 
     setFilteredEvents((state) => {
-      let newState = state.filter((item) => item.title.includes(keyword));
+      let newState = state.filter((item) =>
+        item.title.toLowerCase().includes(keyword.toLowerCase())
+      );
       switch (sort) {
         case sortTypes[0]:
           newState.sort((a, b) => {
@@ -137,7 +139,6 @@ export const MainPage = () => {
             active={0}
             onClick={(event) => {
               const offset = event.currentTarget.getBoundingClientRect();
-              console.log(offset);
               setFilterStatus({ top: offset.top, left: offset.left });
             }}
           >
@@ -195,7 +196,10 @@ export const MainPage = () => {
           disable={() => {
             setFilterStatus(null);
           }}
-          setValue={setFilter}
+          setValue={(item) => {
+            setPage(0);
+            setFilter(item);
+          }}
           Name={
             <button
               className="mainButton"

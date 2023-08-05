@@ -41,7 +41,7 @@ export const MainPage = () => {
   const [filterStatus, setFilterStatus] = useState(null);
 
   const [filter, setFilter] = useState("");
-  const [sort, setSort] = useState(sortTypes[4]);
+  const [sort, setSort] = useState("");
   const keyword = useKeyword();
   const onAddClick = () => {
     navigate("/createEvent", { state: { from: "/" } });
@@ -118,10 +118,10 @@ export const MainPage = () => {
             <Plus /> {size >= 768 && "Add new event"}
           </AddButton>
           <SortButton
+            className={sort && "active"}
             type="button"
             onClick={(event) => {
               const offset = event.currentTarget.getBoundingClientRect();
-              console.log(offset);
               setSortStatus({
                 top: offset.top,
                 left: offset.left + offset.width - 170,
@@ -132,6 +132,7 @@ export const MainPage = () => {
             <Filter2 className={sort && "active"} />
           </SortButton>
           <FileterButton
+            className={filter && "active"}
             type="button"
             active={0}
             onClick={(event) => {
@@ -164,7 +165,7 @@ export const MainPage = () => {
             <ReactPaginate
               className="paginate"
               pageCount={Math.round(filteredEvents.length / onPage)}
-              pageRangeDisplayed={1}
+              pageRangeDisplayed={(size >= 768 && 3) || (size && 1)}
               marginPagesDisplayed={1}
               initialPage={page}
               pageClassName="p-item"

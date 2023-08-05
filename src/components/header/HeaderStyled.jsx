@@ -9,7 +9,6 @@ export const StyldHeader = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 56px;
   }
   & h1 {
     ${({ theme }) => theme.fontHero}
@@ -48,6 +47,13 @@ export const StyldHeader = styled.header`
     margin-top: 24px;
     margin-left: auto;
     margin-right: auto;
+
+    @media screen and (min-width: 768px) {
+      margin: 0;
+      margin-right: 24px;
+      margin-left: auto;
+      width: 368px;
+    }
 
     display: flex;
     justify-content: space-between;

@@ -83,50 +83,52 @@ export const CreateEventForm = () => {
   };
   return (
     <StyledForm onSubmit={onSubmit}>
-      <FormInput
-        name="title"
-        title="Title"
-        errorMessage={!titleValid}
-        valueState={titleState}
-        validator={titleValidator}
-      />
-      <FormInput
-        name="description"
-        title="Decription"
-        errorMessage={!desctiptionValid}
-        valueState={descriptionState}
-        validator={desctiptionValidator}
-        field={true}
-      />
-      <DataPiker setDateProp={setEventDate} />
-      <TimePicker setDate={setEventDate} />
-      <FormInput
-        name="location"
-        title="Location"
-        errorMessage={!locationValid}
-        valueState={locationState}
-        validator={locationValidator}
-      />
-      <CategoryPicker
-        title="Category"
-        setCategotyProp={setCategory}
-        items={[
-          "Art",
-          "Music",
-          "Business",
-          "Conference",
-          "Workshop",
-          "Party",
-          "Sport",
-        ]}
-      />
-      <FileInput title="Foto" setFile={setFile} />
-      <CategoryPicker
-        title="Priority"
-        setCategotyProp={setPriority}
-        items={["High", "Medium", "Low"]}
-        marginBottom="0px"
-      />
+      <div className="formContainer">
+        <FormInput
+          name="title"
+          title="Title"
+          errorMessage={!titleValid}
+          valueState={titleState}
+          validator={titleValidator}
+        />
+        <FormInput
+          name="description"
+          title="Decription"
+          errorMessage={!desctiptionValid}
+          valueState={descriptionState}
+          validator={desctiptionValidator}
+          field={true}
+        />
+        <DataPiker setDateProp={setEventDate} />
+        <TimePicker setDate={setEventDate} />
+        <FormInput
+          name="location"
+          title="Location"
+          errorMessage={!locationValid}
+          valueState={locationState}
+          validator={locationValidator}
+        />
+        <CategoryPicker
+          title="Category"
+          setCategotyProp={setCategory}
+          items={[
+            "Art",
+            "Music",
+            "Business",
+            "Conference",
+            "Workshop",
+            "Party",
+            "Sport",
+          ]}
+        />
+        <FileInput title="Add picture" setFile={setFile} />
+        <CategoryPicker
+          title="Priority"
+          setCategotyProp={setPriority}
+          items={["High", "Medium", "Low"]}
+          marginBottom="0px"
+        />
+      </div>
       <button
         type="submit"
         className={`${checkSubmitEnable() ? "enable" : "disable"} submitButton`}

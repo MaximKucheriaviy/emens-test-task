@@ -2,6 +2,11 @@ import { styled } from "styled-components";
 
 export const StyledInput = styled.div`
   height: ${(props) => (props.field ? "180px" : "100px")};
+
+  @media screen and (min-width: 768px) {
+    height: ${(props) => (props.field ? "180px" : "100px")};
+    width: 308px;
+  }
   & .title {
     font-family: Poppins;
     font-size: 16px;
@@ -10,10 +15,15 @@ export const StyledInput = styled.div`
     line-height: 16px;
     letter-spacing: 0.4px;
     color: ${({ theme }) => theme.primaryColor};
+    display: block;
   }
   & .inputDiv {
     margin-top: 8px;
     position: relative;
+  }
+
+  & input {
+    height: 56px;
   }
   & input,
   & textarea {
@@ -31,9 +41,11 @@ export const StyledInput = styled.div`
   }
   & textarea {
     resize: none;
-    height: 124px;
+    height: 156px;
     display: block;
     box-sizing: border-box;
+    @media screen and (min-width: 768px) {
+    }
   }
 
   & .errorMessage {

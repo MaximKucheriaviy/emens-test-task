@@ -3,15 +3,26 @@ import { StyedCretePage } from "../createEvent/createEventPageStyled";
 
 export const EventPageStyled = styled(StyedCretePage)`
   background-color: white;
-
+  padding-bottom: 263px;
+  @media screen and (min-width: 768px) {
+    padding-bottom: 263px;
+  }
   & .eventCard {
     border-radius: 8px;
     overflow: hidden;
     border-radius: 8px;
     box-shadow: 4px 5px 9px 0px rgba(166, 141, 174, 0.28);
+    @media screen and (min-width: 768px) {
+      width: 688px;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
   & .imageThumb {
     height: 168px;
+    @media screen and (min-width: 768px) {
+      height: 272px;
+    }
     overflow: hidden;
     border-radius: 8px;
   }
@@ -47,6 +58,11 @@ export const EventPageStyled = styled(StyedCretePage)`
       display: flex;
       justify-content: space-between;
       margin-top: 40px;
+
+      @media screen and (min-width: 768px) {
+        justify-content: flex-end;
+        gap: 16px;
+      }
       & button {
         border-radius: 4px;
         border: 1px solid ${({ theme }) => theme.primaryColor};
@@ -64,7 +80,6 @@ export const EventPageStyled = styled(StyedCretePage)`
         color: ${({ theme }) => theme.primaryColor};
       }
       & .delete {
-        margin-left: auto;
         text-align: center;
         font-family: Poppins;
         font-size: 12px;

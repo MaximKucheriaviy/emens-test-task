@@ -4,7 +4,10 @@ export const MainStyled = styled.section`
   padding-right: 24px;
   padding-left: 24px;
   padding-bottom: 40px;
-
+  @media screen and (min-width: 768px) {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
   & h2 {
     ${({ theme }) => theme.fontH2};
     color: ${({ theme }) => theme.hardGray};
@@ -28,6 +31,7 @@ export const MainStyled = styled.section`
 
     & .active {
       stroke: ${({ theme }) => theme.primaryColor};
+      color: ${({ theme }) => theme.primaryColor};
     }
   }
   & .randomGenerator {
@@ -58,6 +62,10 @@ export const MainStyled = styled.section`
 
     display: flex;
     justify-content: center;
+    @media screen and (min-width: 768px) {
+      gap: 40px;
+      width: 688px;
+    }
 
     border-radius: 8px;
     box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
@@ -66,8 +74,8 @@ export const MainStyled = styled.section`
     & .break,
     & .next,
     & .previous {
-      width: 40px;
-      height: 40px;
+      width: 64px;
+      height: 64px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -79,6 +87,15 @@ export const MainStyled = styled.section`
       font-weight: 800;
       line-height: normal;
       color: ${({ theme }) => theme.divider};
+      & svg {
+        &:hover {
+          stroke: ${({ theme }) => theme.hoverColor};
+        }
+      }
+      &:hover {
+        color: ${({ theme }) => theme.hoverColor};
+        stroke: ${({ theme }) => theme.hoverColor};
+      }
     }
 
     & a {

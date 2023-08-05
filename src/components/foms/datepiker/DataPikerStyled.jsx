@@ -2,6 +2,10 @@ import { styled } from "styled-components";
 
 export const DataPikerStyled = styled.div`
   position: relative;
+  margin-top: 20px;
+  @media screen and (min-width: 768px) {
+    width: 308px;
+  }
   & .title {
     font-family: Poppins;
     font-size: 16px;
@@ -12,6 +16,7 @@ export const DataPikerStyled = styled.div`
     color: ${({ theme }) => theme.primaryColor};
   }
   & .mainButton {
+    height: 56px;
     margin-top: 8px;
     display: flex;
     justify-content: space-between;
@@ -79,6 +84,7 @@ export const DataPikerModal = styled.div`
   & .weekName {
     display: flex;
     margin-top: 16px;
+    justify-content: space-around;
     & div {
       width: 28px;
       padding-top: 8px;
@@ -97,6 +103,11 @@ export const DataPikerModal = styled.div`
   & .buttonDiv {
     display: flex;
     justify-content: space-between;
+
+    @media screen and (min-width: 768px) {
+      justify-content: flex-end;
+      gap: 16px;
+    }
     & button {
       border-radius: 4px;
       border: 1px solid ${({ theme }) => theme.primaryColor};
@@ -113,7 +124,7 @@ export const DataPikerModal = styled.div`
       color: ${({ theme }) => theme.primaryColor};
     }
     & .chooseButton {
-      margin-left: auto;
+      /* margin-left: auto; */
       text-align: center;
       font-family: Poppins;
       font-size: 12px;

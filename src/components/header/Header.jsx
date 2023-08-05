@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setKeyword } from "../../redux/slices/keyWordSlice";
 import { useKeyword } from "../../redux/selectors/keywordSelector";
+import { useWindowSize } from "../../service/useWindowSize";
 
 export const Header = () => {
   const [overlayVisible, setOverlayVisible] = useState(false);
@@ -16,6 +17,7 @@ export const Header = () => {
     const { value } = event.currentTarget;
     dispatch(setKeyword(value));
   };
+  const size = useWindowSize();
   const openButtonOnClick = () => {
     setOverlayVisible((state) => !state);
   };
@@ -26,6 +28,23 @@ export const Header = () => {
     <StyldHeader>
       <div className="topLine">
         <h1>Event Planer</h1>
+        {size >= 768 && (
+          <div className="searchField">
+            <Find className="icon" />
+            <input
+              type="text"
+              placeholder="Search by keywords"
+              onChange={onInputChage}
+              value={keyword}
+              size={10}
+            />
+            {keyword && (
+              <button type="button" onClick={onCrossClick}>
+                <Cross />
+              </button>
+            )}
+          </div>
+        )}
         <div className="languageSelector">
           <button
             className="openButton"
@@ -41,21 +60,24 @@ export const Header = () => {
           </Overlay>
         </div>
       </div>
-      <div className="searchField">
-        <Find className="icon" />
-        <input
-          type="text"
-          placeholder="Search by keywords"
-          onChange={onInputChage}
-          value={keyword}
-          size={10}
-        />
-        {keyword && (
-          <button type="button" onClick={onCrossClick}>
-            <Cross />
-          </button>
-        )}
-      </div>
+
+      {size < 768 && (
+        <div className="searchField">
+          <Find className="icon" />
+          <input
+            type="text"
+            placeholder="Search by keywords"
+            onChange={onInputChage}
+            value={keyword}
+            size={10}
+          />
+          {keyword && (
+            <button type="button" onClick={onCrossClick}>
+              <Cross />
+            </button>
+          )}
+        </div>
+      )}
     </StyldHeader>
   );
 };

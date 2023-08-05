@@ -4,6 +4,10 @@ import { styled } from "styled-components";
 export const TimePickerStyled = styled(DataPikerStyled)`
   margin-top: 20px;
   margin-bottom: 20px;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 0px;
+    width: 308px;
+  }
 `;
 
 export const TymePickerModal = styled.div`

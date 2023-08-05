@@ -64,7 +64,7 @@ export const TimePicker = ({ setDate }) => {
   };
   return (
     <TimePickerStyled>
-      <h3 className="title">Select date</h3>
+      <h3 className="title">Select time</h3>
       <button
         type="button"
         className={`mainButton ${active ? "activeButton" : ""}`}

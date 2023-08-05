@@ -10,6 +10,7 @@ export const FormInput = ({
   validator = () => {},
   name = "",
   field = false,
+  style,
 }) => {
   const id = useRef(v4());
   const onChage = (event) => {
@@ -21,7 +22,11 @@ export const FormInput = ({
     valueState[1]("");
   };
   return (
-    <StyledInput error={errorMessage ? 1 : 0} field={field ? 1 : 0}>
+    <StyledInput
+      error={errorMessage ? 1 : 0}
+      field={field ? 1 : 0}
+      style={style}
+    >
       <label className="title" htmlFor={id}>
         {title}
       </label>

@@ -18,6 +18,7 @@ import { ReactComponent as Chevron } from "../../assets/icons/chevron.svg";
 import { useLocation } from "react-router-dom";
 import { Filter } from "../../components/filter/filter";
 import { ReactComponent as Arrow } from "../../assets/icons/arrSmall.svg";
+import { useWindowSize } from "../../service/useWindowSize";
 
 const sortTypes = [
   "nameUp",
@@ -52,7 +53,7 @@ export const MainPage = () => {
       dispatch(addEvent(generateRandomEvent()));
     }
   };
-
+  const size = useWindowSize();
   const onPage = 6;
   useEffect(() => {
     if (filter === "") {
@@ -111,35 +112,40 @@ export const MainPage = () => {
 
   return (
     <MainStyled>
-      <div className="buttonsDiv">
-        <AddButton type="button" onClick={onAddClick}>
-          <Plus />
-        </AddButton>
-        <SortButton
-          type="button"
-          onClick={(event) => {
-            const offset = event.currentTarget.getBoundingClientRect();
-            console.log(offset);
-            setSortStatus({
-              top: offset.top,
-              left: offset.left + offset.width - 170,
-            });
-          }}
-        >
-          <Filter2 className={sort && "active"} />
-        </SortButton>
-        <FileterButton
-          type="button"
-          active={0}
-          onClick={(event) => {
-            const offset = event.currentTarget.getBoundingClientRect();
-            console.log(offset);
-            setFilterStatus({ top: offset.top, left: offset.left });
-          }}
-        >
-          <Filter3 className={filter && "active"} />
-        </FileterButton>
+      <div className="topLine">
+        <div className="buttonsDiv">
+          <AddButton type="button" onClick={onAddClick}>
+            <Plus /> {size >= 768 && "Add new event"}
+          </AddButton>
+          <SortButton
+            type="button"
+            onClick={(event) => {
+              const offset = event.currentTarget.getBoundingClientRect();
+              console.log(offset);
+              setSortStatus({
+                top: offset.top,
+                left: offset.left + offset.width - 170,
+              });
+            }}
+          >
+            {size >= 768 && "Sort by"}
+            <Filter2 className={sort && "active"} />
+          </SortButton>
+          <FileterButton
+            type="button"
+            active={0}
+            onClick={(event) => {
+              const offset = event.currentTarget.getBoundingClientRect();
+              console.log(offset);
+              setFilterStatus({ top: offset.top, left: offset.left });
+            }}
+          >
+            {size >= 768 && (filter || "Category")}
+            <Filter3 className={filter && "active"} />
+          </FileterButton>
+        </div>
       </div>
+      {size >= 768 && size < 1280 && <h2>My events</h2>}
       {events.length === 0 && (
         <div className="randomGenerator">
           <p>

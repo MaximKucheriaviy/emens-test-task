@@ -7,4 +7,7 @@ export const StyledList = styled.ul`
   margin-right: auto;
   grid-row-gap: 24px;
   margin-top: 40px;
+  @media screen and (min-width: 768px) {
+    margin-top: 24px;
+  }
 `;

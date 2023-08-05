@@ -4,13 +4,23 @@ export const MainStyled = styled.section`
   padding-right: 24px;
   padding-left: 24px;
   padding-bottom: 40px;
+
+  & h2 {
+    ${({ theme }) => theme.fontH2};
+    color: ${({ theme }) => theme.hardGray};
+    margin-top: 24px;
+  }
   & .buttonsDiv {
     display: flex;
     flex-direction: row-reverse;
     gap: 24px;
     & button {
-      width: 56px;
       height: 56px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+
       border: none;
       box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
       border-radius: 8px;
@@ -94,18 +104,40 @@ export const MainStyled = styled.section`
 
 export const FileterButton = styled.button`
   background-color: #fff;
+  ${({ theme }) => theme.fontTitle};
   & svg {
     stroke: ${(props) => (!props.active ? "#000" : props.theme.primaryColor)};
+  }
+  width: 56px;
+  @media screen and (min-width: 768px) {
+    width: auto;
+    padding: 0px 16px;
   }
 `;
 
 export const SortButton = styled.button`
   background-color: #fff;
+  ${({ theme }) => theme.fontTitle};
   & svg {
     stroke: ${(props) => (!props.active ? "#000" : props.theme.primaryColor)};
+  }
+  width: 56px;
+  @media screen and (min-width: 768px) {
+    width: auto;
+    padding: 0px 16px;
   }
 `;
 
 export const AddButton = styled.button`
+  ${({ theme }) => theme.fontTitle};
+  &:hover {
+    background-color: ${({ theme }) => theme.hoverColor};
+  }
+  width: 56px;
+  @media screen and (min-width: 768px) {
+    width: auto;
+    padding: 0px 12px;
+  }
+  color: white;
   background-color: ${({ theme }) => theme.primaryColor};
 `;

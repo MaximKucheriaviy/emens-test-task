@@ -5,6 +5,7 @@ import { ReactComponent as Filter3 } from "../../assets/icons/filters-3.svg";
 import { useNavigate } from "react-router-dom";
 import { EventList } from "../../components/eventLinst/EventList";
 import { useAllEvents } from "../../redux/selectors/eventSelector";
+import { useKeyword } from "../../redux/selectors/keywordSelector";
 import {
   generateRandomEvent,
   getRandomInt,
@@ -40,6 +41,7 @@ export const MainPage = () => {
 
   const [filter, setFilter] = useState("");
   const [sort, setSort] = useState("");
+  const keyword = useKeyword();
   const onAddClick = () => {
     navigate("/createEvent", { state: { from: "/" } });
   };
@@ -58,12 +60,9 @@ export const MainPage = () => {
     } else {
       setFilteredEvents(events.filter((item) => item.category === filter));
     }
-    if (!sort) {
-      return;
-    }
+
     setFilteredEvents((state) => {
-      let newState = [...state];
-      console.log(state);
+      let newState = state.filter((item) => item.title.includes(keyword));
       switch (sort) {
         case sortTypes[0]:
           newState.sort((a, b) => {
@@ -103,7 +102,7 @@ export const MainPage = () => {
       }
       return newState;
     });
-  }, [filter, events, sort]);
+  }, [filter, events, sort, keyword]);
   useEffect(() => {
     const start = onPage * page;
     const end = onPage * (page + 1);
@@ -152,7 +151,7 @@ export const MainPage = () => {
           </button>
         </div>
       )}
-      {events.length !== 0 && (
+      {onPageEvents.length !== 0 && (
         <>
           <EventList list={onPageEvents} page={page} />
           {filteredEvents.length / onPage > 1 && (
@@ -174,6 +173,11 @@ export const MainPage = () => {
             />
           )}
         </>
+      )}
+      {onPageEvents.length === 0 && events.length !== 0 && (
+        <div className="randomGenerator">
+          <p>No events found</p>
+        </div>
       )}
       {filterStatus && (
         <Filter

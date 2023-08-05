@@ -4,19 +4,23 @@ import { ReactComponent as ChevronDown } from "./chevron-down-small.svg";
 import { ReactComponent as Cross } from "./cross-small.svg";
 import { Overlay } from "./HeaderStyled";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setKeyword } from "../../redux/slices/keyWordSlice";
+import { useKeyword } from "../../redux/selectors/keywordSelector";
 
 export const Header = () => {
   const [overlayVisible, setOverlayVisible] = useState(false);
-  const [keyword, setKeyWord] = useState("");
+  const keyword = useKeyword();
+  const dispatch = useDispatch();
   const onInputChage = (event) => {
     const { value } = event.currentTarget;
-    setKeyWord(value);
+    dispatch(setKeyword(value));
   };
   const openButtonOnClick = () => {
     setOverlayVisible((state) => !state);
   };
   const onCrossClick = () => {
-    setKeyWord("");
+    dispatch(setKeyword(""));
   };
   return (
     <StyldHeader>

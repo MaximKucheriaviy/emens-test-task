@@ -10,7 +10,10 @@ export const StyledFilter = styled.div`
 
   & .selector {
     position: absolute;
-    top: ${({ repoition }) => repoition.top}px;
+    ${({ repoition }) => {
+      console.log(repoition);
+    }}
+    top: ${({ repoition }) => repoition.top + window.scrollY}px;
     left: ${({ repoition }) => repoition.left}px;
     background-color: white;
     ${({ theme }) => theme.fontTitle}

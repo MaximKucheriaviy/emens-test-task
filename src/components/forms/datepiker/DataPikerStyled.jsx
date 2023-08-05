@@ -6,6 +6,13 @@ export const DataPikerStyled = styled.div`
   @media screen and (min-width: 768px) {
     width: 308px;
   }
+  @media screen and (min-width: 1280px) {
+    width: 308px;
+    margin-top: 0;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 372px;
+  }
   & .title {
     font-family: Poppins;
     font-size: 16px;

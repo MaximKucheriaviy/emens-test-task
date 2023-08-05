@@ -7,6 +7,9 @@ export const StyledCategoryPicker = styled(DataPikerStyled)`
   & .mainButton {
     height: 56px;
   }
+  @media screen and (min-width: 1280px) {
+    width: 372px;
+  }
 `;
 
 export const CategoryPickerModal = styled.div`

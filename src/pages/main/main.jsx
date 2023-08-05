@@ -3,7 +3,7 @@ import { ReactComponent as Plus } from "../../assets/icons/plus.svg";
 import { ReactComponent as Filter2 } from "../../assets/icons/filters-2.svg";
 import { ReactComponent as Filter3 } from "../../assets/icons/filters-3.svg";
 import { useNavigate } from "react-router-dom";
-import { EventList } from "../../components/eventLinst/EventList";
+import { EventList } from "../../components/eventList/EventList";
 import { useAllEvents } from "../../redux/selectors/eventSelector";
 import { useKeyword } from "../../redux/selectors/keywordSelector";
 import {
@@ -54,7 +54,7 @@ export const MainPage = () => {
     }
   };
   const size = useWindowSize();
-  const onPage = 6;
+  const onPage = size < 1280 ? 6 : 8;
   useEffect(() => {
     if (filter === "") {
       setFilteredEvents(events);
@@ -108,7 +108,7 @@ export const MainPage = () => {
     const start = onPage * page;
     const end = onPage * (page + 1);
     setOnPageEvents(filteredEvents.slice(start, end));
-  }, [page, events, filter, filteredEvents]);
+  }, [page, events, filter, filteredEvents, onPage]);
 
   return (
     <MainStyled>
@@ -144,6 +144,7 @@ export const MainPage = () => {
             {size >= 768 && (filter || "Category")}
             <Filter3 className={filter && "active"} />
           </FileterButton>
+          {size >= 1280 && <h2>My events</h2>}
         </div>
       </div>
       {size >= 768 && size < 1280 && <h2>My events</h2>}
@@ -162,22 +163,24 @@ export const MainPage = () => {
         <>
           <EventList list={onPageEvents} page={page} />
           {filteredEvents.length / onPage > 1 && (
-            <ReactPaginate
-              className="paginate"
-              pageCount={Math.round(filteredEvents.length / onPage)}
-              pageRangeDisplayed={(size >= 768 && 3) || (size && 1)}
-              marginPagesDisplayed={1}
-              initialPage={page}
-              pageClassName="p-item"
-              onPageChange={({ selected }) => {
-                setPage(selected);
-                window.scrollTo(0, 0);
-              }}
-              nextLabel={<Chevron className="nextChevron" />}
-              previousLabel={<Chevron className="prevChevron" />}
-              breakLabel={"..."}
-              activeClassName="activeClass"
-            />
+            <div className="paginationWraper">
+              <ReactPaginate
+                className="paginate"
+                pageCount={Math.round(filteredEvents.length / onPage)}
+                pageRangeDisplayed={(size >= 768 && 3) || (size && 1)}
+                marginPagesDisplayed={1}
+                initialPage={page}
+                pageClassName="p-item"
+                onPageChange={({ selected }) => {
+                  setPage(selected);
+                  window.scrollTo(0, 0);
+                }}
+                nextLabel={<Chevron className="nextChevron" />}
+                previousLabel={<Chevron className="prevChevron" />}
+                breakLabel={"..."}
+                activeClassName="activeClass"
+              />
+            </div>
           )}
         </>
       )}

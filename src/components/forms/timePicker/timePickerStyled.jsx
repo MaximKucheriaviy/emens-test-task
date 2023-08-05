@@ -8,6 +8,9 @@ export const TimePickerStyled = styled(DataPikerStyled)`
     margin-bottom: 0px;
     width: 308px;
   }
+  @media screen and (min-width: 1280px) {
+    width: 372px;
+  }
 `;
 
 export const TymePickerModal = styled.div`

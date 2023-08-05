@@ -14,6 +14,11 @@ export const StyedCretePage = styled.section`
       margin-left: auto;
       margin-right: auto;
     }
+    @media screen and (min-width: 1280px) {
+      width: 1280px;
+      margin-left: auto;
+      margin-right: auto;
+    }
     ${({ theme }) => theme.fontH2}
     font-size: 24px;
     color: ${({ theme }) => theme.hardGray};

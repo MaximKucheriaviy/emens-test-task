@@ -7,6 +7,16 @@ export const EventPageStyled = styled(StyedCretePage)`
   @media screen and (min-width: 768px) {
     padding-bottom: 263px;
   }
+
+  & h2 {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    @media screen and (min-width: 1280px) {
+      width: 628px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
   & .eventCard {
     border-radius: 8px;
     overflow: hidden;
@@ -14,6 +24,11 @@ export const EventPageStyled = styled(StyedCretePage)`
     box-shadow: 4px 5px 9px 0px rgba(166, 141, 174, 0.28);
     @media screen and (min-width: 768px) {
       width: 688px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    @media screen and (min-width: 1280px) {
+      width: 628px;
       margin-left: auto;
       margin-right: auto;
     }

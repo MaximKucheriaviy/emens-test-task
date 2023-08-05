@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { StyedCretePage, StyledBackButton } from "./createEventPageStyled";
 import { ReactComponent as ArrowLeft } from "../../assets/icons/Arrow.svg";
-import { CreateEventForm } from "../../components/foms/createEventForm/CreateEventForm";
+import { CreateEventForm } from "../../components/forms/createEventForm/CreateEventForm";
 
 export const CreateEventPage = () => {
   const location = useLocation();

@@ -9,7 +9,6 @@ import { FileInput } from "../fileInput/FileInput";
 import { addEvent } from "../../../redux/slices/eventSlice";
 import { useDispatch } from "react-redux";
 import { v4 } from "uuid";
-import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 export const CreateEventForm = () => {
@@ -24,7 +23,6 @@ export const CreateEventForm = () => {
   const [desctiptionValid, setDesctiptionValid] = useState(true);
   const [locationValid, setLocationValid] = useState(true);
 
-  const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const titleValidator = (line) => {

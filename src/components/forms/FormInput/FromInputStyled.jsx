@@ -4,8 +4,10 @@ export const StyledInput = styled.div`
   height: ${(props) => (props.field ? "180px" : "100px")};
 
   @media screen and (min-width: 768px) {
-    height: ${(props) => (props.field ? "180px" : "100px")};
     width: 308px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 372px;
   }
   & .title {
     font-family: Poppins;
@@ -44,8 +46,6 @@ export const StyledInput = styled.div`
     height: 156px;
     display: block;
     box-sizing: border-box;
-    @media screen and (min-width: 768px) {
-    }
   }
 
   & .errorMessage {
@@ -72,6 +72,12 @@ export const StyledInput = styled.div`
     & svg {
       stroke: ${(props) =>
         !props.error ? props.theme.primaryColor : props.theme.pink};
+    }
+  }
+
+  &.Location {
+    @media screen and (min-width: 1280px) {
+      margin-top: 20px;
     }
   }
 `;

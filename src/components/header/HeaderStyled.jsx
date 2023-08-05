@@ -54,6 +54,9 @@ export const StyldHeader = styled.header`
       margin-left: auto;
       width: 368px;
     }
+    @media screen and (min-width: 1280px) {
+      width: 410px;
+    }
 
     display: flex;
     justify-content: space-between;

@@ -12,6 +12,11 @@ export const MainStyled = styled.section`
     ${({ theme }) => theme.fontH2};
     color: ${({ theme }) => theme.hardGray};
     margin-top: 24px;
+    @media screen and (min-width: 768px) {
+      display: inline-block;
+      margin-top: 0;
+      margin-right: auto;
+    }
   }
   & .buttonsDiv {
     display: flex;
@@ -52,12 +57,19 @@ export const MainStyled = styled.section`
       }
     }
   }
-
+  & .paginationWraper {
+    margin-top: 40px;
+    @media screen and (min-width: 1280px) {
+      width: 1280px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
   & .paginate {
     width: 272px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 40px;
+
     padding: 10px;
 
     display: flex;
@@ -65,6 +77,12 @@ export const MainStyled = styled.section`
     @media screen and (min-width: 768px) {
       gap: 40px;
       width: 688px;
+    }
+
+    @media screen and (min-width: 768px) {
+      gap: 20px;
+      width: 588px;
+      margin-right: 0;
     }
 
     border-radius: 8px;
@@ -79,6 +97,7 @@ export const MainStyled = styled.section`
       display: flex;
       justify-content: center;
       align-items: center;
+      cursor: pointer;
 
       text-align: center;
       font-family: Poppins;

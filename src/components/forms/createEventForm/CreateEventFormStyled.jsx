@@ -11,13 +11,27 @@ export const StyledForm = styled.form`
     margin-right: auto;
     padding: 40px 24px 40px 24px;
   }
+  @media screen and (min-width: 1280px) {
+    width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 40px 40px 54px 40px;
+  }
   & .formContainer {
     display: flex;
     flex-direction: column;
-    column-gap: 24px;
+    justify-content: flex-start;
+
     flex-wrap: wrap;
+
     @media screen and (min-width: 768px) {
       height: 480px;
+      column-gap: 24px;
+      align-content: start;
+    }
+    @media screen and (min-width: 1280px) {
+      height: 300px;
+      column-gap: 42px;
     }
   }
   & .submitButton {

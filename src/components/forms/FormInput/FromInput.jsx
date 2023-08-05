@@ -26,6 +26,7 @@ export const FormInput = ({
       error={errorMessage ? 1 : 0}
       field={field ? 1 : 0}
       style={style}
+      className={title}
     >
       <label className="title" htmlFor={id}>
         {title}

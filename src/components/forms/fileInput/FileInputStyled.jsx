@@ -16,6 +16,9 @@ export const StyledFileInput = styled(StyledInput)`
     @media screen and (min-width: 768px) {
       width: 308px;
     }
+    @media screen and (min-width: 1280px) {
+      width: 372px;
+    }
     height: 56px;
     overflow: hidden;
     line-height: 24px;

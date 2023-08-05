@@ -13,7 +13,7 @@ const cityes = [
   "Cherkacy",
   "Ivano-Frankivsk",
 ];
-const priority = "Highm Medium Low".split(" ");
+const priority = "High Medium Low".split(" ");
 const category = [
   "Art",
   "Music",

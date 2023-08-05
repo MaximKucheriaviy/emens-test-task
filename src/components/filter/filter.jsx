@@ -8,19 +8,21 @@ export const Filter = ({
   setValue = () => {},
   disable,
   filterStatus,
+  width = 158,
+  keys = [],
 }) => {
   const node = document.querySelector("#portal");
   const onItemClick = (index) => {
     setValue(values[index]);
   };
   return createPortal(
-    <StyledFilter onClick={disable} repoition={filterStatus}>
+    <StyledFilter onClick={disable} repoition={filterStatus} width={width}>
       <div className="selector">
         <div>{Name}</div>
 
         {items.map((item, index) => (
           <button
-            key={item}
+            key={keys[index]}
             type="button"
             className="selectorButton"
             onClick={() => {

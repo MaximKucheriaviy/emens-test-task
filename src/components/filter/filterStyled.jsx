@@ -15,7 +15,7 @@ export const StyledFilter = styled.div`
     background-color: white;
     ${({ theme }) => theme.fontTitle}
     color: ${({ theme }) => theme.primaryColor};
-    width: 158px;
+    width: ${({ width }) => width}px;
 
     box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
     border-radius: 8px;
@@ -49,11 +49,26 @@ export const StyledFilter = styled.div`
       background-color: transparent;
       padding: 8px 24px;
       text-align: left;
+
+      display: flex;
+      justify-content: space-between;
       width: 100%;
       ${({ theme }) => theme.fontCaption};
       color: ${({ theme }) => theme.divider};
       &:hover {
         color: ${({ theme }) => theme.hoverColor};
+        & .arrowUp,
+        & .arrowDown {
+          stroke: ${({ theme }) => theme.hoverColor};
+        }
+      }
+
+      & .arrowDown {
+        transform: rotateZ(180deg);
+      }
+      & .arrowUp,
+      & .arrowDown {
+        stroke: ${({ theme }) => theme.divider};
       }
     }
   }

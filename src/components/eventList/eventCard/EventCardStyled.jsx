@@ -7,6 +7,8 @@ export const StyledCard = styled.li`
   overflow: hidden;
   box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
   position: relative;
+  background-color: #fff;
+
   & img {
     height: 343px;
   }

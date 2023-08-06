@@ -2,7 +2,6 @@ import { styled } from "styled-components";
 import { StyedCretePage } from "../createEvent/createEventPageStyled";
 
 export const EventPageStyled = styled(StyedCretePage)`
-  background-color: white;
   padding-bottom: 263px;
   @media screen and (min-width: 768px) {
     padding-bottom: 263px;
@@ -22,6 +21,7 @@ export const EventPageStyled = styled(StyedCretePage)`
     overflow: hidden;
     border-radius: 8px;
     box-shadow: 4px 5px 9px 0px rgba(166, 141, 174, 0.28);
+    background-color: white;
     @media screen and (min-width: 768px) {
       width: 688px;
       margin-left: auto;

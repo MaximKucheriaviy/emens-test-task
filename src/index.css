@@ -38,3 +38,10 @@ ul {
   margin: 0;
   padding: 0;
 }
+
+main {
+  background-image: url("./assets/images/Background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: -300px 0px;
+}

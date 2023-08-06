@@ -74,6 +74,7 @@ export const MainStyled = styled.section`
 
     display: flex;
     justify-content: center;
+    background-color: #fff;
     @media screen and (min-width: 768px) {
       gap: 40px;
       width: 688px;

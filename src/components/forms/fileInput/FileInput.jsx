@@ -1,12 +1,19 @@
 import { v4 } from "uuid";
 import { StyledFileInput } from "./FileInputStyled";
 import { useRef } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ReactComponent as Cross } from "../../../assets/icons/cross-small.svg";
 
-export const FileInput = ({ name, title, setFile }) => {
+export const FileInput = ({ name, title, setFile, initValue }) => {
   const id = useRef(v4());
   const [filePath, setFilePath] = useState("");
+
+  useEffect(() => {
+    if (!initValue) {
+      return;
+    }
+    setFilePath("File selected");
+  }, [initValue]);
 
   const onChage = (event) => {
     const file = event.target.files[0];

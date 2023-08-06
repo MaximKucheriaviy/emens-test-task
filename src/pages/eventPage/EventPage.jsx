@@ -22,6 +22,10 @@ export const EventPage = () => {
     navigate("/");
   };
 
+  const editCallback = () => {
+    navigate(`/edit/${params.id}`);
+  };
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -48,7 +52,7 @@ export const EventPage = () => {
             <div>{parseDate(date)}</div>
           </div>
           <div className="buttons">
-            <button type="button" className="edit">
+            <button type="button" className="edit" onClick={editCallback}>
               Edit
             </button>
             <button

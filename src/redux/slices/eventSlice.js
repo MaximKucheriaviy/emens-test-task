@@ -13,10 +13,15 @@ export const eventSlice = createSlice({
       state.value = state.value.filter(({ id }) => id !== payload);
       saveToStorage(state.value);
     },
+    editEvent(state, { payload }) {
+      const index = state.value.findIndex((item) => item.id === payload.id);
+      state.value[index] = payload;
+      saveToStorage(state.value);
+    },
   },
 });
 
-export const { addEvent, deleteEvent } = eventSlice.actions;
+export const { addEvent, deleteEvent, editEvent } = eventSlice.actions;
 
 function saveToStorage(obj) {
   window.localStorage.setItem("events", JSON.stringify(obj));

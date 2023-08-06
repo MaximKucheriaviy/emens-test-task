@@ -1,27 +1,40 @@
-import { StyledForm } from "./CreateEventFormStyled";
+import { StyledForm } from "../createEventForm/CreateEventFormStyled";
 import { FormInput } from "../FormInput/FromInput";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { validate } from "../../../service/validation";
 import { DataPiker } from "../datepiker/DataPiker";
 import { TimePicker } from "../timePicker/timePicker";
 import { CategoryPicker } from "../categorySelector/categorySelector";
 import { FileInput } from "../fileInput/FileInput";
-import { addEvent } from "../../../redux/slices/eventSlice";
+import { editEvent } from "../../../redux/slices/eventSlice";
 import { useDispatch } from "react-redux";
-import { v4 } from "uuid";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useEvent } from "../../../redux/selectors/eventSelector";
 
-export const CreateEventForm = () => {
-  const titleState = useState("");
-  const descriptionState = useState("");
-  const locationState = useState("");
-  const [eventDate, setEventDate] = useState(new Date());
+export const EditEventForm = () => {
+  const { id } = useParams();
+  const event = useEvent(id);
+  const [titleState, setTileState] = useState("");
+  const [descriptionState, setDescriptionState] = useState("");
+  const [locationState, setLocationState] = useState("");
+  const [eventDate, setEventDate] = useState(null);
   const [category, setCategory] = useState(null);
   const [priority, setPriority] = useState(null);
   const [file, setFile] = useState(null);
   const [titleValid, setTitleValid] = useState(true);
   const [desctiptionValid, setDesctiptionValid] = useState(true);
   const [locationValid, setLocationValid] = useState(true);
+
+  useEffect(() => {
+    setTileState(event.title);
+    setDescriptionState(event.description);
+    setLocationState(event.location);
+    setCategory(event.category);
+    setEventDate(new Date(event.eventDate));
+    setPriority(event.priority);
+    setFile(event.file);
+  }, [event]);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -67,17 +80,17 @@ export const CreateEventForm = () => {
       return;
     }
     const data = {
-      id: v4(),
-      title: titleState[0],
-      description: descriptionState[0],
-      location: locationState[0],
+      id,
+      title: titleState,
+      description: descriptionState,
+      location: locationState,
       eventDate: eventDate.getTime(),
       category,
       priority,
       file: `./images/${category}.png`,
     };
-    dispatch(addEvent(data));
-    navigate(`/${data.id}`, { state: { from: "/createEvent" } });
+    dispatch(editEvent(data));
+    navigate(`/${data.id}`, { state: { from: `/edit/${id}` } });
   };
   return (
     <StyledForm onSubmit={onSubmit}>
@@ -86,24 +99,24 @@ export const CreateEventForm = () => {
           name="title"
           title="Title"
           errorMessage={!titleValid}
-          valueState={titleState}
+          valueState={[titleState, setTileState]}
           validator={titleValidator}
         />
         <FormInput
           name="description"
           title="Decription"
           errorMessage={!desctiptionValid}
-          valueState={descriptionState}
+          valueState={[descriptionState, setDescriptionState]}
           validator={desctiptionValidator}
           field={true}
         />
-        <DataPiker setDateProp={setEventDate} />
-        <TimePicker setDate={setEventDate} />
+        <DataPiker setDateProp={setEventDate} initValue={eventDate} />
+        <TimePicker setDate={setEventDate} initValue={eventDate} />
         <FormInput
           name="location"
           title="Location"
           errorMessage={!locationValid}
-          valueState={locationState}
+          valueState={[locationState, setLocationState]}
           validator={locationValidator}
         />
         <CategoryPicker
@@ -118,20 +131,22 @@ export const CreateEventForm = () => {
             "Party",
             "Sport",
           ]}
+          initValue={category}
         />
-        <FileInput title="Add picture" setFile={setFile} />
+        <FileInput title="Add picture" setFile={setFile} initValue={file} />
         <CategoryPicker
           title="Priority"
           setCategotyProp={setPriority}
           items={["High", "Medium", "Low"]}
           marginBottom="0px"
+          initValue={priority}
         />
       </div>
       <button
         type="submit"
         className={`${checkSubmitEnable() ? "enable" : "disable"} submitButton`}
       >
-        Add event
+        Save
       </button>
     </StyledForm>
   );

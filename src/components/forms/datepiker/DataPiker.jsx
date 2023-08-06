@@ -2,6 +2,7 @@ import { DataPikerStyled, DataPikerModal } from "./DataPikerStyled";
 import { useState } from "react";
 import { ReactComponent as Chevron } from "../../../assets/icons/chevron.svg";
 import { Calendar } from "./Calendar";
+import { useEffect } from "react";
 
 const monthNames = [
   "January",
@@ -18,7 +19,7 @@ const monthNames = [
   "December",
 ];
 
-export const DataPiker = ({ setDateProp }) => {
+export const DataPiker = ({ setDateProp, initValue = null }) => {
   const [active, setActive] = useState(false);
   const [date, setDate] = useState(new Date(Date.now()));
   const [currentDate] = useState(new Date(Date.now()));
@@ -26,6 +27,19 @@ export const DataPiker = ({ setDateProp }) => {
   const onMainButtonClick = () => {
     setActive((state) => !state);
   };
+
+  useEffect(() => {
+    if (!initValue) {
+      return;
+    }
+    setDate(initValue);
+  }, [initValue]);
+
+  useEffect(() => {
+    setStringDate(
+      `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
+    );
+  }, [date]);
   const onRightClick = () => {
     setDate((state) => {
       const newState = new Date(state);
@@ -34,9 +48,6 @@ export const DataPiker = ({ setDateProp }) => {
     });
   };
   const acceptData = () => {
-    setStringDate(
-      `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
-    );
     setActive(false);
     setDateProp(date);
   };

@@ -3,7 +3,7 @@ import {
   CategoryPickerModal,
 } from "./categorySelectorStyled";
 import { useState } from "react";
-
+import { useEffect } from "react";
 import { ReactComponent as Chevron } from "../../../assets/icons/chevron.svg";
 
 export const CategoryPicker = ({
@@ -11,6 +11,7 @@ export const CategoryPicker = ({
   items = [],
   title = "",
   marginBottom = "",
+  initValue = null,
 }) => {
   const [active, setActive] = useState(false);
   const [stringTitle, setStringTitle] = useState("");
@@ -22,6 +23,13 @@ export const CategoryPicker = ({
     setCategotyProp(line);
     setActive(false);
   };
+
+  useEffect(() => {
+    if (!initValue) {
+      return;
+    }
+    setStringTitle(initValue);
+  }, [initValue]);
   return (
     <StyledCategoryPicker margin_bottom={marginBottom}>
       <h3 className="title">{title}</h3>

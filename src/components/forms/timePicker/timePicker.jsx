@@ -1,14 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { TimePickerStyled, TymePickerModal } from "./timePickerStyled";
 import { ReactComponent as Chevron } from "../../../assets/icons/chevron.svg";
 import { formatTime } from "../../../service/timeFormater";
 
-export const TimePicker = ({ setDate }) => {
+export const TimePicker = ({ setDate, initValue = new Date() }) => {
   const [active, setActive] = useState(false);
-  const [hour, setHout] = useState(12);
+  const [hour, setHour] = useState(12);
   const [minute, setMinute] = useState(0);
   const [dayTime, setDayTime] = useState("PM");
   const [strinTime, setStringTime] = useState("");
+  useEffect(() => {
+    setStringTime(`${formatTime(hour)} : ${formatTime(minute)}`);
+  }, [hour, minute]);
+  useEffect(() => {
+    if (!initValue) {
+      return;
+    }
+    let IHour = initValue.getHours();
+    const IMinute = initValue.getMinutes();
+    if (IHour > 12) {
+      IHour -= 12;
+      setDayTime("AM");
+    }
+    setHour(IHour.toString());
+    setMinute(IMinute.toString());
+  }, [initValue]);
   const onMainButtonClick = () => {
     if (active) {
       setDate((state) => {
@@ -17,7 +33,6 @@ export const TimePicker = ({ setDate }) => {
         newDate.setMinutes(minute);
         return newDate;
       });
-      setStringTime(`${formatTime(hour)} : ${formatTime(minute)}`);
     }
     setActive((state) => !state);
   };
@@ -31,7 +46,7 @@ export const TimePicker = ({ setDate }) => {
     });
   };
   const incrementHour = () => {
-    setHout((state) => {
+    setHour((state) => {
       if (state === 12) {
         return 1;
       }
@@ -39,7 +54,7 @@ export const TimePicker = ({ setDate }) => {
     });
   };
   const decrementHout = () => {
-    setHout((state) => {
+    setHour((state) => {
       if (state === 1) {
         return 12;
       }

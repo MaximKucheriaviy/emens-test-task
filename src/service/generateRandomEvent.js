@@ -1,7 +1,7 @@
 import { v4 } from "uuid";
 
 const text =
-  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi quos minus quo neque! Voluptatem voluptatibus aliquam, dolore quia, expedita molestiae impedit praesentium sapiente, ducimus numquam aperiam odit similique! Dolorum, ratione.".split(
+  "Lorem ipsum dolor sit amet consectetur adipisicing elit Nisi quos minus quo neque Voluptatem voluptatibus aliquam dolore quia expedita molestiae impedit praesentium sapiente ducimus numquam aperiam odit similique Dolorum ratione".split(
     " "
   );
 const cityes = [
@@ -36,7 +36,7 @@ export const generateRandomEvent = () => {
   event.title = "";
   for (let i = 0; i < titleWords; i++) {
     if (i === 0) {
-      event.title = text[getRandomInt(0, text.length - 1)];
+      event.title = text[getRandomInt(0, text.length - 1)].replace(".", "");
     } else {
       event.title = `${event.title} ${text[getRandomInt(0, text.length - 1)]}`;
     }

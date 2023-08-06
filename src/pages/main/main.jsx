@@ -63,9 +63,15 @@ export const MainPage = () => {
     }
 
     setFilteredEvents((state) => {
-      let newState = state.filter((item) =>
-        item.title.toLowerCase().includes(keyword.toLowerCase())
-      );
+      let newState = state.filter((item) => {
+        if (item.title.toLowerCase().includes(keyword.toLowerCase())) {
+          if (keyword) {
+            setPage(0);
+          }
+          return true;
+        }
+        return false;
+      });
       switch (sort) {
         case sortTypes[0]:
           newState.sort((a, b) => {
